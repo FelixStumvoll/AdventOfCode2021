@@ -8,11 +8,6 @@ fun main() {
     println(task2(input))
 }
 
-fun task1(input: List<Int>): Int =
-    input.drop(1)
-        .fold(Pair(input.first(), 0)) { (num, count), next ->
-            Pair(next, if (next > num) count + 1 else count)
-        }.second
+fun task1(input: List<Int>): Int = input.windowed(2).count { (a,b) -> a < b }
 
-fun task2(input: List<Int>): Int =
-    input.windowed(3).map { it.sum() }.let{ task1(it) }
+fun task2(input: List<Int>): Int = input.windowed(3).map { it.sum() }.let{ task1(it) }
