@@ -1,8 +1,8 @@
-package aoc.tasks
+package aoc.days
 
 import aoc.inputOfDay
-import aoc.tasks.Bit.One
-import aoc.tasks.Bit.Zero
+import aoc.days.Bit.One
+import aoc.days.Bit.Zero
 import kotlin.math.pow
 
 enum class Bit {

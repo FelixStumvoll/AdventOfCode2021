@@ -1,4 +1,4 @@
-package aoc.tasks
+package aoc.days
 
 import aoc.inputOfDay
 

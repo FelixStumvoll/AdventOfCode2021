@@ -1,7 +1,7 @@
-package aoc.tasks
+package aoc.days
 
 import aoc.inputOfDay
-import aoc.tasks.Direction.*
+import aoc.days.Direction.*
 
 enum class Direction {
     Forward, Up, Down;
