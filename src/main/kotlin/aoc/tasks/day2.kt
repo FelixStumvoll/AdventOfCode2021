@@ -19,7 +19,7 @@ typealias Command = Pair<Direction, Int>
 
 fun main() {
     val input = inputOfDay(2)
-        .map { l -> l.split(" ").let { Pair(Direction.of(it[0]), it[1].toInt()) } }
+        .map { l -> l.split(' ').let { Pair(Direction.of(it[0]), it[1].toInt()) } }
     println(task1(input))
     println(task2(input))
 }
