@@ -19,7 +19,7 @@ fun parseInput(input: List<String>): Pair<List<Int>, List<BingoField>> {
     val bingoField = input.drop(2).filterNot { it.isEmpty() }.chunked(5)
         .map { rows ->
             BingoField(rows.map { line ->
-                line.split(" ").filterNot { it.isEmpty() }.map { BingoCell(it.toInt()) }
+                line.trim().split("""\s+""".toRegex()).map { BingoCell(it.toInt()) }
             })
         }
 
