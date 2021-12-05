@@ -8,6 +8,6 @@ fun main() {
     println(task2(input))
 }
 
-fun task1(input: List<Int>): Int = input.windowed(2).count { (a,b) -> a < b }
+fun task1(input: List<Int>): Int = input.windowed(2).count { (a, b) -> a < b }
 
-fun task2(input: List<Int>): Int = input.windowed(3).map { it.sum() }.let{ task1(it) }
+fun task2(input: List<Int>): Int = input.windowed(3).map { it.sum() }.let { task1(it) }
