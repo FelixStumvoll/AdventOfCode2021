@@ -1,4 +1,4 @@
-package aoc.days
+package aoc.days.day3
 
 import aoc.inputOfDay
 
