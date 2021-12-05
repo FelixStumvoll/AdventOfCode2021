@@ -4,13 +4,13 @@ import aoc.inputOfDay
 
 data class Point(val x: Int, val y: Int) {
     infix fun to(other: Point): List<Point> {
-        val xRange = if(x >= other.x)  x.downTo(other.x) else x..other.x
-        val yRange = if(y >= other.y) y.downTo(other.y) else y..other.y
+        val xRange = if (x >= other.x) x.downTo(other.x) else x..other.x
+        val yRange = if (y >= other.y) y.downTo(other.y) else y..other.y
 
         return when {
             x == other.x -> yRange.map { Point(x, it) }
             y == other.y -> xRange.map { Point(it, y) }
-            else -> xRange.zip(yRange).map { (x,y) -> Point(x, y) }
+            else -> xRange.zip(yRange).map { (x, y) -> Point(x, y) }
         }
     }
 }
