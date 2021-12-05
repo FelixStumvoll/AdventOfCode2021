@@ -30,11 +30,10 @@ fun main() {
     println(task2(input))
 }
 
-fun buildVentMap(input: VentLines, filter: ((start: Point, end: Point) -> Boolean)? = null): Int =
-    input.filter { (start, end) -> filter?.invoke(start, end) ?: true }
-        .flatMap { (start, end) -> start to end }
+fun buildVentMap(input: VentLines): Int =
+    input.flatMap { (start, end) -> start to end }
         .groupBy { it.x }.mapValues { (_, v) -> v.groupingBy { it.y }.eachCount() }
         .map { it.value.filter { (_, v) -> v > 1 }.values.count() }.sum()
 
-fun task1(input: VentLines): Int = buildVentMap(input) { start, end -> start.x == end.x || start.y == end.y }
+fun task1(input: VentLines): Int = buildVentMap(input.filter { (start, end) -> start.x == end.x || start.y == end.y })
 fun task2(input: VentLines): Int = buildVentMap(input)
