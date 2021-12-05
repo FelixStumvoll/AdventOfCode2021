@@ -15,6 +15,7 @@ enum class Direction {
         }
     }
 }
+
 typealias Command = Pair<Direction, Int>
 
 fun main() {

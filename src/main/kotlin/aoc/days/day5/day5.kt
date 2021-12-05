@@ -17,18 +17,18 @@ data class Point(val x: Int, val y: Int) {
 
 typealias VentLines = List<Pair<Point, Point>>
 
-fun parseInput(input: List<String>): VentLines = input
-    .map { line ->
-        line.split(" -> ")
-            .map { pair -> pair.split(",").let { (x, y) -> Point(x.toInt(), y.toInt()) } }
-            .let { (start, end) -> Pair(start, end) }
-    }
-
 fun main() {
     val input = parseInput(inputOfDay(5))
     println(task1(input))
     println(task2(input))
 }
+
+fun parseInput(input: List<String>): VentLines =
+    input.map { line ->
+        line.split(" -> ")
+            .map { pair -> pair.split(",").let { (x, y) -> Point(x.toInt(), y.toInt()) } }
+            .let { (start, end) -> Pair(start, end) }
+    }
 
 fun buildVentMap(input: VentLines): Int =
     input.flatMap { (start, end) -> start to end }

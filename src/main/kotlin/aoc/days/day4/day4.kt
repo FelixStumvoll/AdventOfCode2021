@@ -14,6 +14,12 @@ data class BingoField(val field: List<List<BingoCell>>) : List<List<BingoCell>> 
     fun unmarkedSum(): Int = flatMap { row -> row.filterNot { it.marked }.map { it.number } }.sum()
 }
 
+fun main() {
+    val (numbers, bingoFields) = parseInput(inputOfDay(4))
+    println(task1(numbers, bingoFields))
+    println(task2(numbers, bingoFields))
+}
+
 fun parseInput(input: List<String>): Pair<List<Int>, List<BingoField>> {
     val numbers = input.first().split(",").map { it.toInt() }
     val bingoField = input.drop(2).filterNot { it.isEmpty() }.chunked(5)
@@ -24,12 +30,6 @@ fun parseInput(input: List<String>): Pair<List<Int>, List<BingoField>> {
         }
 
     return Pair(numbers, bingoField)
-}
-
-fun main() {
-    val (numbers, bingoFields) = parseInput(inputOfDay(4))
-    println(task1(numbers, bingoFields))
-    println(task2(numbers, bingoFields))
 }
 
 fun task1(numbers: List<Int>, bingoFields: List<BingoField>): Int {
