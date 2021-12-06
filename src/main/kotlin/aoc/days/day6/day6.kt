@@ -10,17 +10,14 @@ fun main() {
 }
 
 fun simulateFishPopulation(days: Int, initialPopulation: List<Int>): BigInteger {
-    tailrec fun simulate(remainingDays: Int, population: Map<Int, BigInteger>): BigInteger = when (remainingDays) {
+    fun simulate(remainingDays: Int, population: Map<Int, BigInteger>): BigInteger = when (remainingDays) {
         0 -> population.values.sumOf { it }
         else -> {
-            fun MutableMap<Int, BigInteger>.plusOrInsert(key: Int, value: BigInteger) =
-                compute(key) { _, v -> v?.plus(value) ?: value }
+            fun Map<Int, BigInteger>.plusOrInsert(key: Int, value: BigInteger) =
+                this + Pair(key, get(key)?.plus(value) ?: value)
 
-            val updatedDays = population.mapKeys { (key, _) -> key - 1 }.toMutableMap().apply {
-                remove(-1)?.let {
-                    plusOrInsert(6, it)
-                    plusOrInsert(8, it)
-                }
+            val updatedDays = population.mapKeys { (key, _) -> key - 1 }.let { map ->
+                map[-1]?.let { map.plusOrInsert(6, it).plusOrInsert(8, it).minus(-1) } ?: map
             }
             simulate(remainingDays - 1, updatedDays)
         }
