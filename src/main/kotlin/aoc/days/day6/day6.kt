@@ -1,7 +1,6 @@
 package aoc.days.day6
 
 import aoc.inputOfDay
-import java.math.BigInteger
 
 fun main() {
     val input = inputOfDay(6).first().split(",").map { it.toInt() }
@@ -9,11 +8,11 @@ fun main() {
     println(task2(input))
 }
 
-fun simulateFishPopulation(days: Int, initialPopulation: List<Int>): BigInteger {
-    fun simulate(remainingDays: Int, population: Map<Int, BigInteger>): BigInteger = when (remainingDays) {
+fun simulateFishPopulation(days: Int, initialPopulation: List<Int>): Long {
+    fun simulate(remainingDays: Int, population: Map<Int, Long>): Long = when (remainingDays) {
         0 -> population.values.sumOf { it }
         else -> {
-            fun Map<Int, BigInteger>.plusOrInsert(key: Int, value: BigInteger) =
+            fun Map<Int, Long>.plusOrInsert(key: Int, value: Long) =
                 this + Pair(key, get(key)?.plus(value) ?: value)
 
             val updatedDays = population.mapKeys { (key, _) -> key - 1 }.let { map ->
@@ -23,7 +22,7 @@ fun simulateFishPopulation(days: Int, initialPopulation: List<Int>): BigInteger 
         }
     }
 
-    return simulate(days, initialPopulation.groupingBy { it }.eachCount().mapValues { (_, v) -> v.toBigInteger() })
+    return simulate(days, initialPopulation.groupingBy { it }.eachCount().mapValues { (_, v) -> v.toLong() })
 }
 
 fun task1(input: List<Int>) = simulateFishPopulation(80, input)
