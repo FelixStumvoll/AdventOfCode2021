@@ -1,6 +1,7 @@
 package aoc.days.day9
 
 import aoc.inputOfDay
+import aoc.get
 
 fun main() {
     val input = inputOfDay(9).map { line -> line.map { it.digitToInt() } }
@@ -10,8 +11,6 @@ fun main() {
 
 fun Pair<Int, Int>.neighbours(): List<Pair<Int, Int>> =
     listOf(Pair(first - 1, second), Pair(first + 1, second), Pair(first, second - 1), Pair(first, second + 1))
-
-fun <T> List<List<T>>.get(pos: Pair<Int, Int>): T? = this.getOrNull(pos.first)?.getOrNull(pos.second)
 
 fun getLowPoints(input: List<List<Int>>): List<Pair<Int, Int>> {
     fun isMin(number: Int, current: Pair<Int, Int>): Boolean =
